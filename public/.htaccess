@@ -1,0 +1,32 @@
+# Pakzameen Travels and Tours — Apache config for cPanel static hosting
+
+# Serve the custom 404 page
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS (uncomment after SSL is active in cPanel)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Force non-www -> www (or reverse the rule to force non-www). Edit domain first.
+  # RewriteCond %{HTTP_HOST} ^example\.com [NC]
+  # RewriteRule ^ https://www.example.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Cache static assets for a year (Astro fingerprints filenames, so this is safe)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
+</IfModule>
