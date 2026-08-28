@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import Figure from '../components/Figure.astro';
+import { whyUs } from '../data/content';
+import { img } from '../data/images';
+import { site } from '../data/site';
+
+const values = [
+  { icon: 'shield', title: 'Trust', desc: 'Honest advice and transparent pricing on every booking.' },
+  { icon: 'star', title: 'Care', desc: 'We treat your journey as if it were our own family\'s.' },
+  { icon: 'check', title: 'Reliability', desc: 'What we promise is what we deliver — every time.' },
+];
+---
+
+<BaseLayout
+  title="About Us"
+  description="Learn about Pakzameen Travels and Tours — a trusted travel company based in Sargodha, Pakistan, serving pilgrims and travellers."
+>
+  <PageHero
+    crumb="About"
+    title="About Pakzameen"
+    subtitle="A trusted travel company from the heart of Sargodha, dedicated to making every journey simple, affordable and memorable."
+    image={img.team}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Our story</span>
+          <h2>Travel made simple, from Sargodha to the world</h2>
+          <p>{site.name} was built on a simple belief: that arranging travel — whether a sacred pilgrimage or a family holiday — should be easy, honest and stress-free. From our office on Mian Khan Road in Sargodha, we help travellers across Pakistan reach their destinations with confidence.</p>
+          <p>Over the years we've helped thousands of pilgrims perform Umrah and Hajj, booked countless flights and visas, and taken families to the mountains of the north and cities around the world. Whatever your journey, we're here to plan it with care.</p>
+          <div class="about-actions">
+            <a href="/contact" class="btn">Get in touch <Icon name="arrow" size={16} /></a>
+            <a href="/umrah" class="btn btn--ghost">Our packages</a>
+          </div>
+        </div>
+        <Figure src={img.happyTravellers} alt="Travellers on a journey" ratio="4 / 5" class="split-media" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">What we stand for</span>
+        <h2>Our values</h2>
+      </div>
+      <div class="grid cols-3">
+        {values.map((v) => (
+          <div class="value card">
+            <span class="value-icon"><Icon name={v.icon} size={26} /></span>
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Why choose us</span>
+        <h2>The Pakzameen difference</h2>
+      </div>
+      <div class="grid cols-4">
+        {whyUs.map((f) => (
+          <div class="feat">
+            <span class="feat-icon"><Icon name={f.icon} size={24} /></span>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>
+
+<style>
+  .split { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1.2fr 1fr; } }
+  .about-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.6rem; }
+
+  .value { text-align: center; padding: 2rem 1.5rem; }
+  .value-icon {
+    display: inline-grid; place-items: center;
+    width: 60px; height: 60px; margin-bottom: 1rem;
+    border-radius: 16px; background: var(--orange-soft); color: var(--orange-dark);
+  }
+  .value h3 { margin-bottom: 0.4rem; }
+  .value p { color: var(--muted); margin: 0; }
+
+  .feat { padding: 0.5rem; }
+  .feat-icon {
+    display: inline-grid; place-items: center;
+    width: 50px; height: 50px; margin-bottom: 0.8rem;
+    border-radius: 12px; background: var(--charcoal); color: var(--orange);
+  }
+  .feat h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .feat p { color: var(--muted); font-size: 0.93rem; margin: 0; }
+</style>

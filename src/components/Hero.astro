@@ -1,0 +1,179 @@
+---
+import Icon from './Icon.astro';
+import { links, site } from '../data/site';
+
+const stats = [
+  { value: '5,000+', label: 'Happy travellers' },
+  { value: '10+', label: 'Years of service' },
+  { value: '50+', label: 'Destinations' },
+];
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="glow" cx="70%" cy="30%" r="60%">
+          <stop offset="0%" stop-color="#e87722" stop-opacity="0.35" />
+          <stop offset="100%" stop-color="#e87722" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="700" fill="url(#glow)" />
+      <!-- globe -->
+      <g stroke="#e87722" stroke-opacity="0.18" fill="none" stroke-width="1.4">
+        <circle cx="930" cy="230" r="180" />
+        <ellipse cx="930" cy="230" rx="180" ry="66" />
+        <ellipse cx="930" cy="230" rx="120" ry="180" />
+        <ellipse cx="930" cy="230" rx="60" ry="180" />
+        <line x1="750" y1="230" x2="1110" y2="230" />
+      </g>
+      <!-- dashed flight arcs -->
+      <g stroke="#e87722" stroke-opacity="0.5" fill="none" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round">
+        <path d="M120 560 C 380 360, 620 420, 900 200" />
+        <path d="M80 400 C 300 300, 520 340, 760 180" stroke-opacity="0.3" />
+      </g>
+      <g fill="#e87722">
+        <circle cx="120" cy="560" r="5" />
+        <circle cx="80" cy="400" r="4" fill-opacity="0.5" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow eyebrow--light">Umrah · Hajj · Air Tickets · Tours</span>
+      <h1>Journeys of a lifetime,<br /><span class="accent">planned with care</span></h1>
+      <p class="lead">
+        {site.name} makes Umrah, Hajj and holidays simple — from visa and flights to
+        hotels near the Haram and unforgettable tours. Trusted travel from Sargodha,
+        serving all of Pakistan.
+      </p>
+
+      <div class="hero-actions">
+        <a href={links.whatsapp()} class="btn btn--green btn--lg" target="_blank" rel="noopener">
+          <Icon name="whatsapp" size={20} /> Enquire on WhatsApp
+        </a>
+        <a href="/umrah" class="btn btn--light btn--lg">
+          View Umrah Packages <Icon name="arrow" size={18} />
+        </a>
+      </div>
+
+      <ul class="hero-stats">
+        {stats.map((s) => (
+          <li><strong>{s.value}</strong><span>{s.label}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    <aside class="hero-card" aria-label="Quick enquiry">
+      <h2>Plan your trip</h2>
+      <p class="hero-card-sub">Tell us where you want to go — we'll do the rest.</p>
+      <div class="hero-card-list">
+        <a href="/umrah" class="hero-card-item">
+          <Icon name="kaaba" size={22} /> <span>Umrah Packages</span> <Icon name="arrow" size={16} />
+        </a>
+        <a href="/hajj" class="hero-card-item">
+          <Icon name="mosque" size={22} /> <span>Hajj Packages</span> <Icon name="arrow" size={16} />
+        </a>
+        <a href="/tours" class="hero-card-item">
+          <Icon name="globe" size={22} /> <span>Tour Packages</span> <Icon name="arrow" size={16} />
+        </a>
+        <a href="/services#visa" class="hero-card-item">
+          <Icon name="passport" size={22} /> <span>Visa & Ticketing</span> <Icon name="arrow" size={16} />
+        </a>
+      </div>
+      <a href={links.tel} class="hero-card-call">
+        <Icon name="phone" size={18} /> Call us: {site.phoneDisplay}
+      </a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #23282e 0%, #1a1e22 55%, #12151890 100%), var(--charcoal);
+    color: #e9e4dc;
+    overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg svg { width: 100%; height: 100%; }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    gap: clamp(2rem, 4vw, 3rem);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+    align-items: center;
+  }
+  @media (min-width: 940px) {
+    .hero-inner { grid-template-columns: 1.35fr 0.85fr; }
+  }
+
+  .eyebrow--light { color: #ffb877; }
+  .hero-copy h1 { color: #fff; margin-bottom: 1rem; }
+  .accent { color: var(--orange); }
+  .lead {
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    color: #cfc9c0;
+    max-width: 46ch;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-bottom: 2.2rem; }
+
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1.4rem, 4vw, 2.6rem);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 1.4rem;
+  }
+  .hero-stats li { display: flex; flex-direction: column; }
+  .hero-stats strong {
+    font-family: var(--font-head);
+    font-size: 1.7rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero-stats span { font-size: 0.85rem; color: #b3aca2; margin-top: 0.3rem; }
+
+  .hero-card {
+    background: rgba(255, 255, 255, 0.97);
+    color: var(--text);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.4rem, 2.5vw, 1.9rem);
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-card h2 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  .hero-card-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.2rem; }
+  .hero-card-list { display: grid; gap: 0.6rem; margin-bottom: 1.2rem; }
+  .hero-card-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-family: var(--font-head);
+    font-weight: 500;
+    background: var(--bg);
+  }
+  .hero-card-item span { flex: 1; }
+  .hero-card-item svg:first-child { color: var(--orange); }
+  .hero-card-item:hover { border-color: var(--orange); background: var(--orange-soft); color: var(--orange-dark); }
+  .hero-card-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-head);
+    font-weight: 600;
+    color: var(--orange-dark);
+    padding: 0.6rem;
+  }
+</style>

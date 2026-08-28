@@ -1,0 +1,52 @@
+---
+/**
+ * Image with a branded gradient fallback. If the remote image fails to load,
+ * the gradient (and optional label) remains — never a broken image box.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  ratio?: string; // e.g. "4 / 3", "16 / 9"
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  rounded?: boolean;
+}
+const {
+  src,
+  alt,
+  ratio = '4 / 3',
+  class: className = '',
+  loading = 'lazy',
+  rounded = true,
+} = Astro.props;
+---
+
+<div
+  class:list={['figure', { rounded }, className]}
+  style={`aspect-ratio: ${ratio};`}
+>
+  <img
+    src={src}
+    alt={alt}
+    loading={loading}
+    decoding="async"
+    onerror="this.style.display='none'"
+  />
+</div>
+
+<style>
+  .figure {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--maroon) 100%);
+    width: 100%;
+  }
+  .figure.rounded { border-radius: var(--radius); }
+  .figure img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

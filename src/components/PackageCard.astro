@@ -1,0 +1,103 @@
+---
+import Icon from './Icon.astro';
+import { links } from '../data/site';
+import type { Package } from '../data/content';
+
+interface Props {
+  pkg: Package;
+  kind: string; // e.g. "Umrah", "Hajj"
+}
+const { pkg, kind } = Astro.props;
+const waMsg = `Assalam-o-Alaikum! I'm interested in the ${pkg.name} (${kind}) package. Please share details.`;
+---
+
+<article class:list={['pkg card', { featured: pkg.featured }]}>
+  {pkg.featured && <span class="badge">Most Popular</span>}
+  <div class="pkg-head">
+    <h3>{pkg.name}</h3>
+    <p class="pkg-duration"><Icon name="clock" size={16} /> {pkg.duration}</p>
+  </div>
+  <div class="pkg-price">
+    <strong>{pkg.price}</strong>
+    {pkg.note && <span>{pkg.note}</span>}
+  </div>
+  <ul class="pkg-features">
+    {pkg.features.map((f) => (
+      <li><Icon name="check" size={18} /> <span>{f}</span></li>
+    ))}
+  </ul>
+  <a
+    href={links.whatsapp(waMsg)}
+    class:list={['btn', pkg.featured ? 'btn--green' : 'btn--ghost']}
+    target="_blank"
+    rel="noopener"
+  >
+    <Icon name="whatsapp" size={18} /> Book / Enquire
+  </a>
+</article>
+
+<style>
+  .pkg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+  }
+  .pkg.featured {
+    border-color: var(--orange);
+    box-shadow: 0 12px 40px rgba(232, 119, 34, 0.18);
+  }
+  .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange);
+    color: #fff;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pkg-head h3 { margin-bottom: 0.35rem; }
+  .pkg-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .pkg-price {
+    margin: 1.1rem 0 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .pkg-price strong {
+    font-family: var(--font-head);
+    font-size: 1.85rem;
+    color: var(--orange-dark);
+    display: block;
+    line-height: 1.1;
+  }
+  .pkg-price span { font-size: 0.85rem; color: var(--muted); }
+  .pkg-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.6rem;
+    display: grid;
+    gap: 0.65rem;
+    flex: 1;
+  }
+  .pkg-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+  }
+  .pkg-features svg { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+</style>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import Figure from '../components/Figure.astro';
+import { services } from '../data/content';
+import { img } from '../data/images';
+import { links } from '../data/site';
+
+const detailed = [
+  {
+    id: 'ticketing',
+    icon: 'plane',
+    title: 'Air Ticketing',
+    image: img.airplane,
+    body: 'We book domestic and international flights on all major airlines at competitive fares. Whether it\'s a one-way ticket, a family holiday or a group booking, we find the best routes and prices — and handle changes and confirmations for you.',
+    points: ['All major airlines', 'Domestic & international', 'Group & family fares', 'Fast confirmation'],
+  },
+  {
+    id: 'visa',
+    icon: 'passport',
+    title: 'Visa Services',
+    image: img.airport,
+    body: 'From visit and tourist visas to work visas, our team prepares and processes your application end to end. We advise on requirements, help with documentation and keep you updated at every stage for destinations across the GCC, Europe, UK, Turkey and beyond.',
+    points: ['Visit & tourist visas', 'Work visa processing', 'Document guidance', 'GCC, Europe, UK, Turkey & more'],
+  },
+  {
+    id: 'hotels',
+    icon: 'hotel',
+    title: 'Hotel Booking',
+    image: img.madinah,
+    body: 'Reserve hotels anywhere in the world, including premium stays close to the Haram in Makkah and Madinah. Tell us your budget and preferences and we\'ll secure comfortable, well-located accommodation for your trip.',
+    points: ['Worldwide hotels', 'Makkah & Madinah stays', 'Budget to 5★', 'Best-rate booking'],
+  },
+];
+---
+
+<BaseLayout
+  title="Our Services"
+  description="Air ticketing, visa processing, hotel booking, Umrah, Hajj and tour services from Pakzameen Travels and Tours, Sargodha."
+>
+  <PageHero
+    crumb="Services"
+    title="Our Services"
+    subtitle="A complete travel desk under one roof — flights, visas, hotels, pilgrimage and holidays, handled by people you can trust."
+    image={img.airport}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid cols-3">
+        {services.map((s) => (
+          <a href={s.href} class="service card">
+            <span class="service-icon"><Icon name={s.icon} size={26} /></span>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {detailed.map((d, i) => (
+    <section id={d.id} class:list={['section', { 'section--alt': i % 2 === 1 }]}>
+      <div class="container">
+        <div class:list={['split', { reverse: i % 2 === 1 }]}>
+          <div class="split-text">
+            <span class="service-icon"><Icon name={d.icon} size={26} /></span>
+            <h2>{d.title}</h2>
+            <p class="muted">{d.body}</p>
+            <ul class="pts">
+              {d.points.map((p) => <li><Icon name="check" size={18} /> {p}</li>)}
+            </ul>
+            <a href={links.whatsapp(`Assalam-o-Alaikum! I'd like to enquire about your ${d.title}.`)} class="btn" target="_blank" rel="noopener">
+              <Icon name="whatsapp" size={18} /> Enquire now
+            </a>
+          </div>
+          <Figure src={d.image} alt={d.title} ratio="4 / 3" class="split-media" />
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand />
+</BaseLayout>
+
+<style>
+  .service { display: flex; flex-direction: column; padding: clamp(1.4rem, 2.5vw, 1.9rem); color: var(--text); }
+  .service-icon {
+    display: inline-grid; place-items: center;
+    width: 54px; height: 54px; border-radius: 14px;
+    background: var(--orange-soft); color: var(--orange-dark); margin-bottom: 1rem;
+  }
+  .service h3 { margin-bottom: 0.4rem; }
+  .service p { color: var(--muted); font-size: 0.95rem; }
+
+  .split { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1.1fr 1fr; } .split.reverse .split-media { order: -1; } }
+  .split-text h2 { margin-bottom: 0.6rem; }
+  .muted { color: var(--muted); }
+  .pts { list-style: none; padding: 0; margin: 1.2rem 0 1.6rem; display: grid; gap: 0.6rem; }
+  @media (min-width: 480px) { .pts { grid-template-columns: 1fr 1fr; } }
+  .pts li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
+  .pts svg { color: var(--green); flex-shrink: 0; }
+</style>

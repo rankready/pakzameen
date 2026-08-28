@@ -1,0 +1,149 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site, links } from '../data/site';
+
+const year = new Date().getFullYear();
+const addr = site.address;
+
+const quickLinks = [
+  { label: 'Umrah Packages', href: '/umrah' },
+  { label: 'Hajj Packages', href: '/hajj' },
+  { label: 'Tour Packages', href: '/tours' },
+  { label: 'Our Services', href: '/services' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const socialIcons = [
+  { key: 'facebook', url: site.socials.facebook },
+  { key: 'instagram', url: site.socials.instagram },
+  { key: 'tiktok', url: site.socials.tiktok },
+  { key: 'youtube', url: site.socials.youtube },
+].filter((s) => s.url);
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <Logo onDark class="footer-logo" />
+      <p>{site.tagline}. Serving pilgrims and travellers from {site.serviceArea}.</p>
+      {socialIcons.length > 0 && (
+        <div class="socials">
+          {socialIcons.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener" aria-label={s.key}>
+              <Icon name={s.key} size={18} />
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        {quickLinks.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <ul class="contact-list">
+        <li>
+          <Icon name="pin" size={18} />
+          <a href={links.mapsQuery} target="_blank" rel="noopener">
+            {addr.line1}, {addr.line2}, {addr.city} {addr.postal}
+          </a>
+        </li>
+        <li>
+          <Icon name="phone" size={18} />
+          <a href={links.tel}>{site.phoneDisplay}</a>
+        </li>
+        <li>
+          <Icon name="whatsapp" size={18} />
+          <a href={links.whatsapp()} target="_blank" rel="noopener">{site.whatsappDisplay}</a>
+        </li>
+        <li>
+          <Icon name="mail" size={18} />
+          <a href={links.mailto}>{site.email}</a>
+        </li>
+        <li>
+          <Icon name="clock" size={18} />
+          <span>{site.hours}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p class="disclaimer">Prices are indicative and subject to change. Hajj packages operate under Government of Pakistan schemes.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--charcoal);
+    color: #c9c3ba;
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+  }
+  .footer a { color: #c9c3ba; }
+  .footer a:hover { color: var(--orange); }
+
+  .footer-grid {
+    display: grid;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  @media (min-width: 720px) {
+    .footer-grid { grid-template-columns: 1.5fr 1fr 1.5fr; }
+  }
+
+  .footer-logo { height: 54px; width: auto; margin-bottom: 1rem; }
+  .footer-brand p { max-width: 34ch; font-size: 0.95rem; }
+
+  .socials { display: flex; gap: 0.6rem; margin-top: 1.2rem; }
+  .socials a {
+    display: inline-grid;
+    place-items: center;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+  .socials a:hover { background: var(--orange); color: #fff; }
+
+  .footer-col h4 {
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 1.1rem;
+  }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .footer-col li { font-size: 0.95rem; }
+
+  .contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .contact-list svg { color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-block: 1.4rem;
+  }
+  .footer-bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #9a938a;
+  }
+  .footer-bottom p { margin: 0; }
+  .disclaimer { max-width: 46ch; }
+</style>

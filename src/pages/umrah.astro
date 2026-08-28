@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import PackageCard from '../components/PackageCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import Figure from '../components/Figure.astro';
+import { umrahPackages, faqs } from '../data/content';
+import { img } from '../data/images';
+
+const included = [
+  { icon: 'passport', title: 'Umrah Visa', desc: 'Full visa processing and documentation support.' },
+  { icon: 'plane', title: 'Return Flights', desc: 'Confirmed tickets on reputable airlines.' },
+  { icon: 'hotel', title: 'Hotels', desc: 'Comfortable stays within reach of the Haram.' },
+  { icon: 'globe', title: 'Transport', desc: 'Airport transfers and ziyarat by A/C coach.' },
+  { icon: 'mosque', title: 'Guided Ziyarat', desc: 'Historic sites in Makkah and Madinah.' },
+  { icon: 'headset', title: 'On-trip Support', desc: 'A group leader and 24/7 assistance.' },
+];
+
+const steps = [
+  { n: '1', t: 'Get in touch', d: 'Call or WhatsApp us with your dates and group size.' },
+  { n: '2', t: 'Choose a package', d: 'Pick a package or let us tailor one to your budget.' },
+  { n: '3', t: 'Submit documents', d: 'Passport, photos and CNIC — we handle the visa.' },
+  { n: '4', t: 'Travel with peace', d: 'Fly out with everything arranged, start to finish.' },
+];
+---
+
+<BaseLayout
+  title="Umrah Packages"
+  description="Economy to VIP Umrah packages from Pakzameen Travels and Tours — visa, flights, hotels near the Haram and guided ziyarat."
+>
+  <PageHero
+    crumb="Umrah"
+    title="Umrah Packages"
+    subtitle="Complete, worry-free Umrah packages with visa, flights, hotels near the Haram and guided ziyarat — tailored for families and groups."
+    image={img.kaaba}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Choose your package</span>
+        <h2>Umrah packages for every budget</h2>
+        <p>All packages can be customised — duration, hotels, airline and transport — to suit you. Prices shown are indicative; contact us for current rates.</p>
+      </div>
+      <div class="grid cols-3">
+        {umrahPackages.map((p) => <PackageCard pkg={p} kind="Umrah" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">What's included</span>
+          <h2>Every package covers the essentials</h2>
+          <p class="muted">We take care of the whole journey so you can focus on your ibadah. Add-ons like extra nights, meal plans and premium hotels are available on request.</p>
+          <div class="incl-grid">
+            {included.map((i) => (
+              <div class="incl">
+                <span class="incl-icon"><Icon name={i.icon} size={22} /></span>
+                <div><strong>{i.title}</strong><span>{i.desc}</span></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Figure src={img.madinah} alt="Masjid an-Nabawi, Madinah" ratio="3 / 4" class="split-img" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Simple process</span>
+        <h2>Booking your Umrah is easy</h2>
+      </div>
+      <div class="grid cols-4">
+        {steps.map((s) => (
+          <div class="step">
+            <span class="step-n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container faq-wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Good to know</span>
+        <h2>Umrah FAQs</h2>
+      </div>
+      <div class="faqs">
+        {faqs.map((f) => (
+          <details class="faq card">
+            <summary>{f.q}<Icon name="arrow" size={18} /></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Ready for your Umrah journey?" text="Let us arrange every detail. Message us for the latest packages and dates." />
+</BaseLayout>
+
+<style>
+  .split { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1.3fr 1fr; } }
+  .muted { color: var(--muted); }
+  .incl-grid { display: grid; gap: 1.1rem; margin-top: 1.6rem; }
+  @media (min-width: 560px) { .incl-grid { grid-template-columns: 1fr 1fr; } }
+  .incl { display: flex; gap: 0.8rem; }
+  .incl-icon {
+    display: inline-grid; place-items: center;
+    width: 46px; height: 46px; flex-shrink: 0;
+    border-radius: 12px; background: var(--orange-soft); color: var(--orange-dark);
+  }
+  .incl strong { display: block; font-family: var(--font-head); }
+  .incl span { font-size: 0.9rem; color: var(--muted); }
+
+  .step { text-align: center; padding: 1rem; }
+  .step-n {
+    display: inline-grid; place-items: center;
+    width: 52px; height: 52px; margin-bottom: 0.8rem;
+    border-radius: 50%;
+    background: var(--charcoal); color: #fff;
+    font-family: var(--font-head); font-weight: 700; font-size: 1.3rem;
+  }
+  .step h3 { font-size: 1.15rem; margin-bottom: 0.3rem; }
+  .step p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+
+  .faq-wrap { max-width: 760px; }
+  .faqs { display: grid; gap: 0.9rem; }
+  .faq { padding: 0; overflow: hidden; }
+  .faq summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.3rem;
+    font-family: var(--font-head); font-weight: 600; cursor: pointer;
+    list-style: none; color: var(--ink);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary svg { transition: transform 0.2s ease; color: var(--orange); flex-shrink: 0; }
+  .faq[open] summary svg { transform: rotate(90deg); }
+  .faq p { padding: 0 1.3rem 1.2rem; margin: 0; color: var(--muted); }
+</style>

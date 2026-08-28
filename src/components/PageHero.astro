@@ -1,0 +1,44 @@
+---
+import Figure from './Figure.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  image?: string;
+  crumb?: string;
+}
+const { title, subtitle, image, crumb } = Astro.props;
+---
+
+<section class="page-hero">
+  {image && <div class="page-hero-media"><Figure src={image} alt="" ratio="21 / 9" rounded={false} loading="eager" /></div>}
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-inner">
+    {crumb && <span class="eyebrow eyebrow--light">{crumb}</span>}
+    <h1>{title}</h1>
+    {subtitle && <p>{subtitle}</p>}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    background: var(--charcoal);
+    color: #fff;
+    overflow: hidden;
+  }
+  .page-hero-media { position: absolute; inset: 0; }
+  .page-hero-media :global(.figure) { height: 100%; }
+  .page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(20,24,28,0.92) 0%, rgba(20,24,28,0.7) 55%, rgba(20,24,28,0.45) 100%);
+  }
+  .page-hero-inner {
+    position: relative;
+    padding-block: clamp(2.8rem, 6vw, 4.5rem);
+  }
+  .eyebrow--light { color: #ffb877; }
+  .page-hero h1 { color: #fff; margin-bottom: 0.5rem; }
+  .page-hero p { color: #d7d1c8; max-width: 56ch; font-size: 1.08rem; margin: 0; }
+</style>

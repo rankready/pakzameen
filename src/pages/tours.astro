@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import Figure from '../components/Figure.astro';
+import { tours } from '../data/content';
+import { tourImage, img } from '../data/images';
+import { links } from '../data/site';
+---
+
+<BaseLayout
+  title="Tour Packages"
+  description="Explore northern Pakistan and international holiday tours with Pakzameen Travels and Tours — Hunza, Naran, Swat, Dubai, Turkey and more."
+>
+  <PageHero
+    crumb="Tours"
+    title="Tour Packages"
+    subtitle="From the peaks of the north to city breaks abroad — memorable, well-planned holidays for families, friends and groups."
+    image={img.hunza}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Where to next?</span>
+        <h2>Domestic &amp; international tours</h2>
+        <p>All tours include transport, accommodation and a planned itinerary. Durations and prices are indicative and fully customisable.</p>
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Filter tours">
+        <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter" data-filter="Domestic" role="tab" aria-selected="false">Pakistan</button>
+        <button class="filter" data-filter="International" role="tab" aria-selected="false">International</button>
+      </div>
+
+      <div class="grid cols-3 tour-grid" id="tour-grid">
+        {tours.map((t) => (
+          <article class="tour card" data-region={t.region}>
+            <div class="tour-media">
+              <Figure src={tourImage[t.destination]} alt={t.destination} ratio="16 / 10" rounded={false} />
+              <span class="tour-tag">{t.region === 'Domestic' ? 'Pakistan' : 'International'}</span>
+            </div>
+            <div class="tour-body">
+              <h3>{t.destination}</h3>
+              <p class="tour-meta"><Icon name="clock" size={15} /> {t.duration}</p>
+              <p class="tour-blurb">{t.blurb}</p>
+              <div class="tour-foot">
+                <span class="tour-price">From <strong>{t.priceFrom}</strong></span>
+                <a
+                  href={links.whatsapp(`Assalam-o-Alaikum! I'd like details on the ${t.destination} tour package.`)}
+                  class="btn btn--ghost btn-sm"
+                  target="_blank"
+                  rel="noopener"
+                >Enquire</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Have a destination in mind?" text="Tell us where you'd like to go and we'll craft a custom tour just for you." />
+</BaseLayout>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem; }
+  .filter {
+    font-family: var(--font-head); font-weight: 600; font-size: 0.92rem;
+    padding: 0.55rem 1.3rem; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff; color: var(--text);
+    cursor: pointer; transition: all 0.15s ease;
+  }
+  .filter:hover { border-color: var(--orange); color: var(--orange-dark); }
+  .filter.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+  .tour { overflow: hidden; display: flex; flex-direction: column; }
+  .tour-media { position: relative; }
+  .tour-tag {
+    position: absolute; top: 0.8rem; left: 0.8rem;
+    background: rgba(20,24,28,0.82); color: #fff;
+    font-size: 0.72rem; font-family: var(--font-head); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 0.3rem 0.7rem; border-radius: 999px;
+  }
+  .tour-body { padding: 1.3rem; display: flex; flex-direction: column; flex: 1; }
+  .tour-body h3 { margin-bottom: 0.35rem; }
+  .tour-meta { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--muted); font-size: 0.85rem; margin: 0 0 0.6rem; }
+  .tour-blurb { color: var(--muted); font-size: 0.93rem; flex: 1; }
+  .tour-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 0.9rem; }
+  .tour-price { font-size: 0.85rem; color: var(--muted); }
+  .tour-price strong { font-family: var(--font-head); font-size: 1.15rem; color: var(--orange-dark); display: block; }
+  .btn-sm { padding: 0.55rem 1.1rem; font-size: 0.88rem; }
+  .tour.hide { display: none; }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter');
+  const cards = document.querySelectorAll<HTMLElement>('.tour');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-selected', String(b === btn));
+      });
+      cards.forEach((c) => {
+        const show = filter === 'all' || c.dataset.region === filter;
+        c.classList.toggle('hide', !show);
+      });
+    });
+  });
+</script>
