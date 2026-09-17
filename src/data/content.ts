@@ -14,6 +14,7 @@ export interface TeamMember {
   name: string;
   initials: string;
   role: string;
+  photo?: string; // path in /public; falls back to initials monogram if empty
   phoneDisplay: string;
   phoneIntl: string; // for tel: links
   whatsapp: string; // digits only, for wa.me links
@@ -24,6 +25,7 @@ export const team: TeamMember[] = [
     name: 'Muhammad Adnan',
     initials: 'MA',
     role: 'Head of Visa Department',
+    photo: '/adnan.jpeg',
     phoneDisplay: '0312 7092424',
     phoneIntl: '+923127092424',
     whatsapp: '923127092424',
@@ -32,6 +34,7 @@ export const team: TeamMember[] = [
     name: 'Muhammad Zeeshan',
     initials: 'MZ',
     role: 'Ticketing Department',
+    photo: '/zeeshan.jpeg',
     phoneDisplay: '0306 0918868',
     phoneIntl: '+923060918868',
     whatsapp: '923060918868',
@@ -40,6 +43,7 @@ export const team: TeamMember[] = [
     name: 'Zuhaib Hassan',
     initials: 'ZH',
     role: 'Sales',
+    photo: '/zohaib.jpeg',
     phoneDisplay: '0306 7022095',
     phoneIntl: '+923067022095',
     whatsapp: '923067022095',

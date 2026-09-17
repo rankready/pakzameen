@@ -54,7 +54,7 @@ const values = [
       </div>
       <div class="owner card">
         <div class="owner-media">
-          <div class="owner-avatar" aria-hidden="true">MO</div>
+          <img class="owner-avatar" src="/owais.jpeg" alt="Muhammad Owais, Director" width="150" height="150" decoding="async" />
         </div>
         <div class="owner-body">
           <h3>Muhammad Owais</h3>
@@ -93,7 +93,9 @@ const values = [
       <div class="team-grid">
         {team.map((m) => (
           <article class="member card">
-            <div class="member-avatar" aria-hidden="true">{m.initials}</div>
+            {m.photo
+              ? <img class="member-avatar" src={m.photo} alt={m.name} width="84" height="84" loading="lazy" decoding="async" />
+              : <div class="member-avatar" aria-hidden="true">{m.initials}</div>}
             <h3>{m.name}</h3>
             <p class="member-role">{m.role}</p>
             <p class="member-phone">{m.phoneDisplay}</p>
@@ -203,6 +205,8 @@ const values = [
     font-size: 3rem;
     letter-spacing: 0.02em;
     box-shadow: var(--shadow);
+    object-fit: cover;
+    object-position: center 22%;
   }
   .owner-body h3 { margin-bottom: 0.2rem; }
   .owner-role {
@@ -264,6 +268,8 @@ const values = [
     font-family: var(--font-head);
     font-weight: 700;
     font-size: 1.7rem;
+    object-fit: cover;
+    object-position: center 22%;
   }
   .member h3 { margin-bottom: 0.2rem; }
   .member-role {
