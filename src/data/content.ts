@@ -24,7 +24,7 @@ export const team: TeamMember[] = [
   {
     name: 'Muhammad Adnan',
     initials: 'MA',
-    role: 'Head of Visa Department',
+    role: 'Visa Department',
     photo: '/adnan.jpeg',
     phoneDisplay: '0312 7092424',
     phoneIntl: '+923127092424',
