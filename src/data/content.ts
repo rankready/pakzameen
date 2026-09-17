@@ -37,7 +37,7 @@ export const team: TeamMember[] = [
     whatsapp: '923060918868',
   },
   {
-    name: 'Zuhair Hassan',
+    name: 'Zuhaib Hassan',
     initials: 'ZH',
     role: 'Sales',
     phoneDisplay: '0306 7022095',
