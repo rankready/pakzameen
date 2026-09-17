@@ -80,6 +80,31 @@ const values = [
     </div>
   </section>
 
+  <section class="section section--ink recog">
+    <div class="container">
+      <div class="recog-grid">
+        <div class="recog-badge">
+          <Icon name="globe" size={40} />
+        </div>
+        <div class="recog-body">
+          <span class="eyebrow eyebrow--light">International participation</span>
+          <h2>Representing Pakzameen on the world stage</h2>
+          <p>
+            Our representative <strong>Muhammad Owais</strong> is a registered participant in the
+            <strong> II World Congress of Inland Tourism</strong>, held on 18–19 November 2026 at the
+            Teatro Municipal da Guarda in Guarda, Portugal — organised by the
+            Associação Ibérica de Turismo do Interior (AITI).
+          </p>
+          <p class="recog-note">
+            This international event brings together institutional representatives, academics and
+            tourism professionals from around the world to share knowledge on developing tourism —
+            part of our commitment to bringing global expertise to every journey we plan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <CtaBand />
 </BaseLayout>
 
@@ -105,4 +130,18 @@ const values = [
   }
   .feat h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
   .feat p { color: var(--muted); font-size: 0.93rem; margin: 0; }
+
+  .eyebrow--light { color: #ffb877; }
+  .recog-grid { display: grid; gap: 1.8rem; align-items: center; }
+  @media (min-width: 780px) { .recog-grid { grid-template-columns: auto 1fr; gap: 2.5rem; } }
+  .recog-badge {
+    display: inline-grid; place-items: center;
+    width: 96px; height: 96px; flex-shrink: 0;
+    border-radius: 24px;
+    background: rgba(232, 119, 34, 0.16);
+    color: var(--orange);
+  }
+  .recog-body p { color: #c9c3ba; margin-bottom: 1rem; }
+  .recog-body strong { color: #fff; }
+  .recog-note { font-size: 0.95rem; }
 </style>
