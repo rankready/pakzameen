@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { links, site } from '../data/site';
+import { img } from '../data/images';
 
 const stats = [
   { value: '5,000+', label: 'Happy travellers' },
@@ -10,6 +11,9 @@ const stats = [
 ---
 
 <section class="hero">
+  <div class="hero-photo" aria-hidden="true">
+    <img src={img.makkahHaram} alt="" loading="eager" decoding="async" onerror="this.style.display='none'" />
+  </div>
   <div class="hero-bg" aria-hidden="true">
     <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
       <defs>
@@ -92,15 +96,24 @@ const stats = [
 <style>
   .hero {
     position: relative;
-    background: linear-gradient(160deg, #23282e 0%, #1a1e22 55%, #12151890 100%), var(--charcoal);
+    background: var(--charcoal);
     color: #e9e4dc;
     overflow: hidden;
   }
-  .hero-bg { position: absolute; inset: 0; }
+  .hero-photo { position: absolute; inset: 0; z-index: 0; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(20, 24, 28, 0.94) 0%, rgba(20, 24, 28, 0.82) 45%, rgba(38, 24, 10, 0.7) 100%);
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 1; }
   .hero-bg svg { width: 100%; height: 100%; }
 
   .hero-inner {
     position: relative;
+    z-index: 2;
     display: grid;
     gap: clamp(2rem, 4vw, 3rem);
     padding-block: clamp(3rem, 7vw, 5.5rem);
