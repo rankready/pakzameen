@@ -3,6 +3,13 @@ import Icon from './Icon.astro';
 import { links, site } from '../data/site';
 import { img } from '../data/images';
 
+// Background video for the hero. Swap this URL for any stock MP4 (Pexels,
+// Coverr, Mixkit) or a local file placed in /public (e.g. '/hero.mp4').
+// The poster photo below shows until the video loads — or stays if the
+// video can't play — so the hero always looks right.
+const heroVideo =
+  'https://videos.pexels.com/video-files/1721294/1721294-hd_1920_1080_30fps.mp4';
+
 const stats = [
   { value: '5,000+', label: 'Happy travellers' },
   { value: '10+', label: 'Years of service' },
@@ -12,7 +19,17 @@ const stats = [
 
 <section class="hero">
   <div class="hero-photo" aria-hidden="true">
-    <img src={img.makkahHaram} alt="" loading="eager" decoding="async" onerror="this.style.display='none'" />
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster={img.makkahHaram}
+    >
+      <source src={heroVideo} type="video/mp4" />
+    </video>
   </div>
   <div class="hero-bg" aria-hidden="true">
     <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
@@ -101,7 +118,8 @@ const stats = [
     overflow: hidden;
   }
   .hero-photo { position: absolute; inset: 0; z-index: 0; }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-photo img,
+  .hero-photo video { width: 100%; height: 100%; object-fit: cover; }
   .hero-photo::after {
     content: '';
     position: absolute;
