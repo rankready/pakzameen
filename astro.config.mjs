@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Update `site` to the friend's real domain when it's known.
-  site: 'https://example.com',
+  // Live custom domain (served via GitHub Pages).
+  site: 'https://pakzameentravels.com',
   integrations: [sitemap()],
 });
