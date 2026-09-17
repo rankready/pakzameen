@@ -75,6 +75,9 @@ const values = [
             <li><Icon name="plane" size={16} /> Passionate traveller — visited 10+ countries</li>
             <li><Icon name="pin" size={16} /> Based in Sargodha, Pakistan</li>
           </ul>
+          <a href="mailto:owais@pakzameentravels.com" class="owner-email">
+            <Icon name="mail" size={16} /> owais@pakzameentravels.com
+          </a>
         </div>
       </div>
     </div>
@@ -227,6 +230,17 @@ const values = [
     color: var(--text);
   }
   .owner-facts svg { color: var(--orange); flex-shrink: 0; }
+  .owner-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--orange-dark);
+  }
+  .owner-email:hover { color: var(--orange); }
 
   /* Team */
   .team-grid {
