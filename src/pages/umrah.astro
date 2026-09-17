@@ -4,7 +4,6 @@ import PageHero from '../components/PageHero.astro';
 import PackageCard from '../components/PackageCard.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
-import Figure from '../components/Figure.astro';
 import { umrahPackages, faqs } from '../data/content';
 import { img } from '../data/images';
 
@@ -51,21 +50,20 @@ const steps = [
 
   <section class="section section--alt">
     <div class="container">
-      <div class="split">
-        <div>
+      <div class="incl-wrap">
+        <div class="section-head center">
           <span class="eyebrow">What's included</span>
           <h2>Every package covers the essentials</h2>
           <p class="muted">We take care of the whole journey so you can focus on your ibadah. Add-ons like extra nights, meal plans and premium hotels are available on request.</p>
-          <div class="incl-grid">
-            {included.map((i) => (
-              <div class="incl">
-                <span class="incl-icon"><Icon name={i.icon} size={22} /></span>
-                <div><strong>{i.title}</strong><span>{i.desc}</span></div>
-              </div>
-            ))}
-          </div>
         </div>
-        <Figure src={img.madinah} alt="Masjid an-Nabawi, Madinah" ratio="3 / 4" class="split-img" />
+        <div class="incl-grid">
+          {included.map((i) => (
+            <div class="incl">
+              <span class="incl-icon"><Icon name={i.icon} size={22} /></span>
+              <div><strong>{i.title}</strong><span>{i.desc}</span></div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -109,11 +107,11 @@ const steps = [
 </BaseLayout>
 
 <style>
-  .split { display: grid; gap: 2.5rem; align-items: center; }
-  @media (min-width: 900px) { .split { grid-template-columns: 1.3fr 1fr; } }
+  .incl-wrap { max-width: 960px; margin-inline: auto; }
   .muted { color: var(--muted); }
-  .incl-grid { display: grid; gap: 1.1rem; margin-top: 1.6rem; }
+  .incl-grid { display: grid; gap: 1.1rem; margin-top: 0.5rem; }
   @media (min-width: 560px) { .incl-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 880px) { .incl-grid { grid-template-columns: repeat(3, 1fr); } }
   .incl { display: flex; gap: 0.8rem; }
   .incl-icon {
     display: inline-grid; place-items: center;

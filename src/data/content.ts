@@ -10,6 +10,42 @@ export interface Service {
   href: string;
 }
 
+export interface TeamMember {
+  name: string;
+  initials: string;
+  role: string;
+  phoneDisplay: string;
+  phoneIntl: string; // for tel: links
+  whatsapp: string; // digits only, for wa.me links
+}
+
+export const team: TeamMember[] = [
+  {
+    name: 'Muhammad Adnan',
+    initials: 'MA',
+    role: 'Head of Visa Department',
+    phoneDisplay: '0312 7092424',
+    phoneIntl: '+923127092424',
+    whatsapp: '923127092424',
+  },
+  {
+    name: 'Muhammad Zeeshan',
+    initials: 'MZ',
+    role: 'Ticketing Department',
+    phoneDisplay: '0306 0918868',
+    phoneIntl: '+923060918868',
+    whatsapp: '923060918868',
+  },
+  {
+    name: 'Zuhair Hassan',
+    initials: 'ZH',
+    role: 'Sales',
+    phoneDisplay: '0306 7022095',
+    phoneIntl: '+923067022095',
+    whatsapp: '923067022095',
+  },
+];
+
 export const services: Service[] = [
   {
     icon: 'kaaba',

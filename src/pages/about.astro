@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
 import Figure from '../components/Figure.astro';
-import { whyUs } from '../data/content';
+import { whyUs, team } from '../data/content';
 import { img } from '../data/images';
 import { site } from '../data/site';
 
@@ -70,17 +70,10 @@ const values = [
             first-hand experience that shapes the routes, tips and destinations he recommends
             to every client.
           </p>
-          <p>
-            His commitment reaches the international stage: he is a registered participant in
-            the <strong>II World Congress of Inland Tourism</strong> (Guarda, Portugal, November 2026),
-            organised by the Associação Ibérica de Turismo do Interior (AITI) — bringing global
-            tourism expertise back to every journey Pakzameen plans.
-          </p>
           <ul class="owner-facts">
             <li><Icon name="star" size={16} /> Director &amp; travel specialist</li>
             <li><Icon name="plane" size={16} /> Passionate traveller — visited 10+ countries</li>
             <li><Icon name="pin" size={16} /> Based in Sargodha, Pakistan</li>
-            <li><Icon name="globe" size={16} /> International tourism delegate (AITI, Portugal 2026)</li>
           </ul>
         </div>
       </div>
@@ -88,6 +81,40 @@ const values = [
   </section>
 
   <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Our team</span>
+        <h2>The people behind your journey</h2>
+        <p>A dedicated Sargodha team ready to help with every part of your travel plans.</p>
+      </div>
+      <div class="team-grid">
+        {team.map((m) => (
+          <article class="member card">
+            <div class="member-avatar" aria-hidden="true">{m.initials}</div>
+            <h3>{m.name}</h3>
+            <p class="member-role">{m.role}</p>
+            <p class="member-phone">{m.phoneDisplay}</p>
+            <div class="member-actions">
+              <a href={`tel:${m.phoneIntl}`} class="btn btn--ghost btn-sm" aria-label={`Call ${m.name}`}>
+                <Icon name="phone" size={16} /> Call
+              </a>
+              <a
+                href={`https://wa.me/${m.whatsapp}`}
+                class="btn btn--green btn-sm"
+                target="_blank"
+                rel="noopener"
+                aria-label={`WhatsApp ${m.name}`}
+              >
+                <Icon name="whatsapp" size={16} /> WhatsApp
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">What we stand for</span>
@@ -105,7 +132,7 @@ const values = [
     </div>
   </section>
 
-  <section class="section section--alt">
+  <section class="section">
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Why choose us</span>
@@ -119,31 +146,6 @@ const values = [
             <p>{f.desc}</p>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--ink recog">
-    <div class="container">
-      <div class="recog-grid">
-        <div class="recog-badge">
-          <Icon name="globe" size={40} />
-        </div>
-        <div class="recog-body">
-          <span class="eyebrow eyebrow--light">International participation</span>
-          <h2>Representing Pakzameen on the world stage</h2>
-          <p>
-            Our Director, <strong>Muhammad Owais</strong>, is a registered participant in the
-            <strong> II World Congress of Inland Tourism</strong>, held on 18–19 November 2026 at the
-            Teatro Municipal da Guarda in Guarda, Portugal — organised by the
-            Associação Ibérica de Turismo do Interior (AITI).
-          </p>
-          <p class="recog-note">
-            This international event brings together institutional representatives, academics and
-            tourism professionals from around the world to share knowledge on developing tourism —
-            part of our commitment to bringing global expertise to every journey we plan.
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -226,17 +228,38 @@ const values = [
   }
   .owner-facts svg { color: var(--orange); flex-shrink: 0; }
 
-  .eyebrow--light { color: #ffb877; }
-  .recog-grid { display: grid; gap: 1.8rem; align-items: center; }
-  @media (min-width: 780px) { .recog-grid { grid-template-columns: auto 1fr; gap: 2.5rem; } }
-  .recog-badge {
-    display: inline-grid; place-items: center;
-    width: 96px; height: 96px; flex-shrink: 0;
-    border-radius: 24px;
-    background: rgba(232, 119, 34, 0.16);
-    color: var(--orange);
+  /* Team */
+  .team-grid {
+    display: grid;
+    gap: clamp(1.1rem, 2.5vw, 1.8rem);
+    max-width: 980px;
+    margin-inline: auto;
   }
-  .recog-body p { color: #c9c3ba; margin-bottom: 1rem; }
-  .recog-body strong { color: #fff; }
-  .recog-note { font-size: 0.95rem; }
+  @media (min-width: 620px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+  .member { text-align: center; padding: 2rem 1.5rem; }
+  .member-avatar {
+    display: grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--maroon) 100%);
+    color: #fff;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.7rem;
+  }
+  .member h3 { margin-bottom: 0.2rem; }
+  .member-role {
+    font-family: var(--font-head);
+    font-weight: 600;
+    color: var(--orange-dark);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  .member-phone { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.1rem; }
+  .member-actions { display: flex; gap: 0.6rem; justify-content: center; }
+  .btn-sm { padding: 0.55rem 1.1rem; font-size: 0.88rem; }
 </style>
