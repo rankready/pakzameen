@@ -194,20 +194,23 @@ const values = [
   .owner-avatar {
     display: grid;
     place-items: center;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    max-width: 240px;
+    aspect-ratio: 4 / 5;
+    height: auto;
     margin-inline: auto;
-    border-radius: 50%;
+    border-radius: 18px;
     background: linear-gradient(135deg, var(--orange) 0%, var(--maroon) 100%);
     color: #fff;
     font-family: var(--font-head);
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 3.4rem;
     letter-spacing: 0.02em;
     box-shadow: var(--shadow);
     object-fit: cover;
-    object-position: center 22%;
+    object-position: center 20%;
   }
+  @media (min-width: 720px) { .owner { grid-template-columns: 240px 1fr; } }
   .owner-body h3 { margin-bottom: 0.2rem; }
   .owner-role {
     font-family: var(--font-head);
@@ -259,17 +262,19 @@ const values = [
   .member-avatar {
     display: grid;
     place-items: center;
-    width: 84px;
-    height: 84px;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    margin: 0 auto 1.1rem;
+    border-radius: 16px;
     background: linear-gradient(135deg, var(--orange) 0%, var(--maroon) 100%);
     color: #fff;
     font-family: var(--font-head);
     font-weight: 700;
-    font-size: 1.7rem;
+    font-size: 2.6rem;
     object-fit: cover;
-    object-position: center 22%;
+    object-position: center 20%;
   }
   .member h3 { margin-bottom: 0.2rem; }
   .member-role {
