@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
 import Figure from '../components/Figure.astro';
-import { whyUs, team } from '../data/content';
+import { whyUs, team, leadership } from '../data/content';
 import { img } from '../data/images';
 import { site } from '../data/site';
 
@@ -33,7 +33,7 @@ const values = [
           <span class="eyebrow">Our story</span>
           <h2>Travel made simple, from Sargodha to the world</h2>
           <p>{site.name} was built on a simple belief: that arranging travel — whether a sacred pilgrimage or a family holiday — should be easy, honest and stress-free. From our office on Mian Khan Road in Sargodha, we help travellers across Pakistan reach their destinations with confidence.</p>
-          <p>Over the years we've helped thousands of pilgrims perform Umrah and Hajj, booked countless flights and visas, and taken families to the mountains of the north and cities around the world. Whatever your journey, we're here to plan it with care.</p>
+          <p>Over the years we've helped thousands of pilgrims perform Umrah, booked countless flights and visas, and taken travellers abroad on memorable tours. Whatever your journey, we're here to plan it with care.</p>
           <div class="about-actions">
             <a href="/contact" class="btn">Get in touch <Icon name="arrow" size={16} /></a>
             <a href="/umrah" class="btn btn--ghost">Our packages</a>
@@ -44,41 +44,36 @@ const values = [
     </div>
   </section>
 
-  <!-- Director profile. To add a real photo, drop it in /public and swap the
-       .owner-avatar monogram for <img src="/owais.jpg" alt="Muhammad Owais" />. -->
+  <!-- Leadership profiles. Photos live in /public (owais.jpeg, adnan.jpeg). -->
   <section class="section section--alt">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Meet the Director</span>
-        <h2>Leadership you can trust</h2>
+        <span class="eyebrow">Leadership</span>
+        <h2>Meet our leadership</h2>
       </div>
-      <div class="owner card">
-        <div class="owner-media">
-          <img class="owner-avatar" src="/owais.jpeg" alt="Muhammad Owais, Director" width="150" height="150" decoding="async" />
-        </div>
-        <div class="owner-body">
-          <h3>Muhammad Owais</h3>
-          <p class="owner-role">Director — Pakzameen Travels and Tours</p>
-          <p>
-            Muhammad Owais leads Pakzameen Travels and Tours with a hands-on, personal
-            approach — treating every pilgrim and traveller like family. Based in Sargodha,
-            he is dedicated to making travel from Pakistan simpler, more affordable and more
-            reliable, whether it's a sacred pilgrimage or a family holiday.
-          </p>
-          <p>
-            A passionate traveller himself, he has explored <strong>10+ countries</strong> —
-            first-hand experience that shapes the routes, tips and destinations he recommends
-            to every client.
-          </p>
-          <ul class="owner-facts">
-            <li><Icon name="star" size={16} /> Director &amp; travel specialist</li>
-            <li><Icon name="plane" size={16} /> Passionate traveller — visited 10+ countries</li>
-            <li><Icon name="pin" size={16} /> Based in Sargodha, Pakistan</li>
-          </ul>
-          <a href="mailto:owais@pakzameentravels.com" class="owner-email">
-            <Icon name="mail" size={16} /> owais@pakzameentravels.com
-          </a>
-        </div>
+      <div class="leaders">
+        {leadership.map((p, i) => (
+          <div class:list={['owner card', { reverse: i % 2 === 1 }]}>
+            <div class="owner-media">
+              <img class="owner-avatar" src={p.photo} alt={`${p.name}, ${p.role}`} width="240" height="300" decoding="async" />
+            </div>
+            <div class="owner-body">
+              <h3>{p.name}</h3>
+              <p class="owner-role">{p.role} — Pakzameen Travels and Tours</p>
+              {p.bio.map((para) => <p>{para}</p>)}
+              <ul class="owner-facts">
+                {p.facts.map((f) => (
+                  <li><Icon name={f.icon} size={16} /> {f.text}</li>
+                ))}
+              </ul>
+              {p.email && (
+                <a href={`mailto:${p.email}`} class="owner-email">
+                  <Icon name="mail" size={16} /> {p.email}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -181,16 +176,22 @@ const values = [
   .feat h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
   .feat p { color: var(--muted); font-size: 0.93rem; margin: 0; }
 
-  /* Director profile */
+  /* Leadership profiles */
+  .leaders { display: grid; gap: 1.8rem; }
   .owner {
     display: grid;
     gap: 1.8rem;
     padding: clamp(1.6rem, 3vw, 2.6rem);
     align-items: center;
-    max-width: 900px;
+    max-width: 920px;
     margin-inline: auto;
+    width: 100%;
   }
-  @media (min-width: 720px) { .owner { grid-template-columns: auto 1fr; gap: 2.4rem; } }
+  @media (min-width: 720px) {
+    .owner { grid-template-columns: 240px 1fr; gap: 2.4rem; }
+    .owner.reverse { grid-template-columns: 1fr 240px; }
+    .owner.reverse .owner-media { order: 2; }
+  }
   .owner-avatar {
     display: grid;
     place-items: center;

@@ -13,11 +13,11 @@ interface Props {
 
 const {
   title,
-  description = 'Pakzameen Travels and Tours — trusted Umrah, Hajj, air ticketing, visa and tour packages from Sargodha, Pakistan.',
+  description = 'Pakzameen Travels and Tours — trusted Umrah, air ticketing, visa, travel insurance and Azerbaijan tour packages from Sargodha, Pakistan.',
   image = '/og-image.png',
 } = Astro.props;
 
-const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — Umrah, Hajj & Tours`;
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — Umrah, Visa & Tours`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 
 const jsonLd = {

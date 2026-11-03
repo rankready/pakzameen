@@ -9,14 +9,14 @@
 export const site = {
   name: 'Pakzameen Travels and Tours',
   shortName: 'Pakzameen',
-  tagline: 'Your journey, our passion — Hajj, Umrah & tours made easy',
+  tagline: 'Your journey, our passion — Umrah, visas, tickets & tours made easy',
   category: 'Travel company',
 
   // Real contact details provided by the business.
-  phoneDisplay: '0310 1113941',
-  phoneIntl: '+923101113941',
-  whatsappDisplay: '+92 310 1113941',
-  whatsappNumber: '923101113941', // digits only, for wa.me links
+  phoneDisplay: '0312 7092424',
+  phoneIntl: '+923127092424',
+  whatsappDisplay: '+92 312 7092424',
+  whatsappNumber: '923127092424', // digits only, for wa.me links
   email: 'info@pakzameen.com', // PLACEHOLDER — replace with real email
 
   address: {

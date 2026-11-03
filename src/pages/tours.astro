@@ -5,41 +5,43 @@ import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
 import Figure from '../components/Figure.astro';
 import { tours } from '../data/content';
-import { tourImage, img } from '../data/images';
+import { img } from '../data/images';
 import { links } from '../data/site';
+
+const highlights = [
+  'Visa guidance & processing',
+  'Return air ticket',
+  'Hotels & daily breakfast',
+  'Airport & sightseeing transfers',
+  'Guided tours of Baku & Gabala',
+];
 ---
 
 <BaseLayout
-  title="Tour Packages"
-  description="Explore northern Pakistan and international holiday tours with Pakzameen Travels and Tours — Hunza, Naran, Swat, Dubai, Turkey and more."
+  title="Azerbaijan Tour Packages"
+  description="Azerbaijan tour packages from Pakzameen Travels and Tours — explore Baku, Gabala and the Caspian coast with visa, flights, hotels and sightseeing."
 >
   <PageHero
     crumb="Tours"
-    title="Tour Packages"
-    subtitle="From the peaks of the north to city breaks abroad — memorable, well-planned holidays for families, friends and groups."
-    image={img.hunza}
+    title="Azerbaijan Tour Packages"
+    subtitle="Discover the beauty of Azerbaijan — Baku's Old City and Flame Towers, the Caspian coast, and the mountains and waterfalls of Gabala."
+    image={img.baku}
   />
 
   <section class="section">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Where to next?</span>
-        <h2>Domestic &amp; international tours</h2>
-        <p>All tours include transport, accommodation and a planned itinerary. Durations and prices are indicative and fully customisable.</p>
+        <span class="eyebrow">Our packages</span>
+        <h2>Azerbaijan, done right</h2>
+        <p>All tours include transport, accommodation and a planned itinerary. Durations and prices are indicative and fully customisable for families, friends and groups.</p>
       </div>
 
-      <div class="filters" role="tablist" aria-label="Filter tours">
-        <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="filter" data-filter="Domestic" role="tab" aria-selected="false">Pakistan</button>
-        <button class="filter" data-filter="International" role="tab" aria-selected="false">International</button>
-      </div>
-
-      <div class="grid cols-3 tour-grid" id="tour-grid">
+      <div class="grid cols-3 tour-grid">
         {tours.map((t) => (
-          <article class="tour card" data-region={t.region}>
+          <article class="tour card">
             <div class="tour-media">
-              <Figure src={tourImage[t.destination]} alt={t.destination} ratio="16 / 10" rounded={false} />
-              <span class="tour-tag">{t.region === 'Domestic' ? 'Pakistan' : 'International'}</span>
+              <Figure src={img.baku} alt={t.destination} ratio="16 / 10" rounded={false} />
+              <span class="tour-tag">Azerbaijan</span>
             </div>
             <div class="tour-body">
               <h3>{t.destination}</h3>
@@ -48,7 +50,7 @@ import { links } from '../data/site';
               <div class="tour-foot">
                 <span class="tour-price">From <strong>{t.priceFrom}</strong></span>
                 <a
-                  href={links.whatsapp(`Assalam-o-Alaikum! I'd like details on the ${t.destination} tour package.`)}
+                  href={links.whatsapp(`Assalam-o-Alaikum! I'd like details on the ${t.destination} (Azerbaijan) tour package.`)}
                   class="btn btn--ghost btn-sm"
                   target="_blank"
                   rel="noopener"
@@ -61,20 +63,26 @@ import { links } from '../data/site';
     </div>
   </section>
 
-  <CtaBand title="Have a destination in mind?" text="Tell us where you'd like to go and we'll craft a custom tour just for you." />
+  <section class="section section--alt">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">What's included</span>
+          <h2>Everything taken care of</h2>
+          <p class="muted">Our Azerbaijan packages are complete — just pack your bags. Add extra nights, upgrade hotels or add a private guide any time.</p>
+          <ul class="pts">
+            {highlights.map((h) => <li><Icon name="check" size={18} /> {h}</li>)}
+          </ul>
+        </div>
+        <Figure src={img.baku} alt="Baku, Azerbaijan" ratio="4 / 3" class="split-img" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Ready to explore Azerbaijan?" text="Tell us your dates and group size and we'll tailor the perfect Baku getaway." />
 </BaseLayout>
 
 <style>
-  .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem; }
-  .filter {
-    font-family: var(--font-head); font-weight: 600; font-size: 0.92rem;
-    padding: 0.55rem 1.3rem; border-radius: 999px;
-    border: 1px solid var(--border); background: #fff; color: var(--text);
-    cursor: pointer; transition: all 0.15s ease;
-  }
-  .filter:hover { border-color: var(--orange); color: var(--orange-dark); }
-  .filter.active { background: var(--orange); color: #fff; border-color: var(--orange); }
-
   .tour { overflow: hidden; display: flex; flex-direction: column; }
   .tour-media { position: relative; }
   .tour-tag {
@@ -92,23 +100,11 @@ import { links } from '../data/site';
   .tour-price { font-size: 0.85rem; color: var(--muted); }
   .tour-price strong { font-family: var(--font-head); font-size: 1.15rem; color: var(--orange-dark); display: block; }
   .btn-sm { padding: 0.55rem 1.1rem; font-size: 0.88rem; }
-  .tour.hide { display: none; }
-</style>
 
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter');
-  const cards = document.querySelectorAll<HTMLElement>('.tour');
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      buttons.forEach((b) => {
-        b.classList.toggle('active', b === btn);
-        b.setAttribute('aria-selected', String(b === btn));
-      });
-      cards.forEach((c) => {
-        const show = filter === 'all' || c.dataset.region === filter;
-        c.classList.toggle('hide', !show);
-      });
-    });
-  });
-</script>
+  .split { display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1.1fr 1fr; } }
+  .muted { color: var(--muted); }
+  .pts { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 0.6rem; }
+  .pts li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
+  .pts svg { color: var(--green); flex-shrink: 0; }
+</style>

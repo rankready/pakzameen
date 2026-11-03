@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { visaCountries } from '../data/content';
+import { img } from '../data/images';
+import { links } from '../data/site';
+
+const steps = [
+  { n: '1', t: 'Tell us your destination', d: 'Call or WhatsApp us with the country and travel dates.' },
+  { n: '2', t: 'Share your documents', d: 'Passport, photos and supporting papers — we advise exactly what’s needed.' },
+  { n: '3', t: 'We process everything', d: 'We prepare and submit your application and keep you updated.' },
+  { n: '4', t: 'Collect your visa', d: 'Receive your visa and travel with complete peace of mind.' },
+];
+---
+
+<BaseLayout
+  title="Visa Services"
+  description="Visit and tourist visa processing from Pakzameen Travels and Tours — UAE (Dubai & Abu Dhabi), Schengen, Thailand, Malaysia, Bahrain, Turkey and many more."
+>
+  <PageHero
+    crumb="Visa Services"
+    title="Visa Services"
+    subtitle="End-to-end visit and tourist visa processing for destinations across the GCC, Europe and Asia — handled by our experienced visa team."
+    image={img.airport}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Where do you want to go?</span>
+        <h2>Visas for many countries</h2>
+        <p>We process visit and tourist visas for a wide range of destinations — and more are available on request. Contact us for requirements and current processing times.</p>
+      </div>
+      <div class="visa-grid">
+        {visaCountries.map((c) => (
+          <a
+            href={links.whatsapp(`Assalam-o-Alaikum! I'd like to enquire about a visa for ${c.country}.`)}
+            class="visa card"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="visa-flag">{c.flag}</span>
+            <span class="visa-name">{c.country}</span>
+            <span class="visa-type">{c.type}</span>
+          </a>
+        ))}
+      </div>
+      <p class="more-note">…and many more. If you don't see your destination, just ask — we handle visas worldwide.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Simple process</span>
+        <h2>Your visa, without the stress</h2>
+      </div>
+      <div class="grid cols-4">
+        {steps.map((s) => (
+          <div class="step">
+            <span class="step-n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Need a visa?" text="Tell us your destination and we'll guide you through the whole process." />
+</BaseLayout>
+
+<style>
+  .visa-grid {
+    display: grid;
+    gap: clamp(0.9rem, 2vw, 1.3rem);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) { .visa-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 860px) { .visa-grid { grid-template-columns: repeat(3, 1fr); } }
+  .visa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.3rem;
+    padding: 1.6rem 1rem;
+    color: var(--text);
+  }
+  .visa-flag { font-size: 2.4rem; line-height: 1; margin-bottom: 0.4rem; }
+  .visa-name { font-family: var(--font-head); font-weight: 600; color: var(--ink); }
+  .visa-type { font-size: 0.85rem; color: var(--muted); }
+  .more-note { text-align: center; color: var(--muted); margin-top: 2rem; }
+
+  .step { text-align: center; padding: 1rem; }
+  .step-n {
+    display: inline-grid; place-items: center;
+    width: 52px; height: 52px; margin-bottom: 0.8rem;
+    border-radius: 50%;
+    background: var(--charcoal); color: #fff;
+    font-family: var(--font-head); font-weight: 700; font-size: 1.3rem;
+  }
+  .step h3 { font-size: 1.15rem; margin-bottom: 0.3rem; }
+  .step p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+</style>

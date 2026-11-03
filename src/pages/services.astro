@@ -14,16 +14,8 @@ const detailed = [
     icon: 'plane',
     title: 'Air Ticketing',
     image: img.airplane,
-    body: 'We book domestic and international flights on all major airlines at competitive fares. Whether it\'s a one-way ticket, a family holiday or a group booking, we find the best routes and prices — and handle changes and confirmations for you.',
-    points: ['All major airlines', 'Domestic & international', 'Group & family fares', 'Fast confirmation'],
-  },
-  {
-    id: 'visa',
-    icon: 'passport',
-    title: 'Visa Services',
-    image: img.airport,
-    body: 'From visit and tourist visas to work visas, our team prepares and processes your application end to end. We advise on requirements, help with documentation and keep you updated at every stage for destinations across the GCC, Europe, UK, Turkey and beyond.',
-    points: ['Visit & tourist visas', 'Work visa processing', 'Document guidance', 'GCC, Europe, UK, Turkey & more'],
+    body: 'We book international flights on all major airlines at competitive fares. Whether it\'s a one-way ticket, a family holiday or a group booking, we find the best routes and prices — and handle changes and confirmations for you.',
+    points: ['All major airlines', 'International destinations', 'Group & family fares', 'Fast confirmation'],
   },
   {
     id: 'hotels',
@@ -33,12 +25,20 @@ const detailed = [
     body: 'Reserve hotels anywhere in the world, including premium stays close to the Haram in Makkah and Madinah. Tell us your budget and preferences and we\'ll secure comfortable, well-located accommodation for your trip.',
     points: ['Worldwide hotels', 'Makkah & Madinah stays', 'Budget to 5★', 'Best-rate booking'],
   },
+  {
+    id: 'insurance',
+    icon: 'shield',
+    title: 'Travel Insurance',
+    image: img.airplane,
+    body: 'Travel with confidence. Our affordable travel insurance covers medical emergencies abroad, trip delays and cancellations, and lost or delayed baggage — and it\'s often required for visa applications. We help you choose the right cover for your trip.',
+    points: ['Medical emergency cover', 'Trip delay & cancellation', 'Lost baggage protection', 'Accepted for visa applications'],
+  },
 ];
 ---
 
 <BaseLayout
   title="Our Services"
-  description="Air ticketing, visa processing, hotel booking, Umrah, Hajj and tour services from Pakzameen Travels and Tours, Sargodha."
+  description="Air ticketing, visa processing, hotel booking, travel insurance, Umrah and tour services from Pakzameen Travels and Tours, Sargodha."
 >
   <PageHero
     crumb="Services"

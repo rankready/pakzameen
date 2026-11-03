@@ -10,6 +10,45 @@ export interface Service {
   href: string;
 }
 
+export const services: Service[] = [
+  {
+    icon: 'kaaba',
+    title: 'Umrah Packages',
+    desc: 'Economy to VIP Umrah packages with visa, flights, hotels near Haram and guided ziyarat.',
+    href: '/umrah',
+  },
+  {
+    icon: 'plane',
+    title: 'Air Ticketing',
+    desc: 'Best fares on all major airlines for international destinations worldwide.',
+    href: '/services#ticketing',
+  },
+  {
+    icon: 'passport',
+    title: 'Visa Services',
+    desc: 'Visit and tourist visa processing for the UAE, Schengen, Thailand, Malaysia, Bahrain and many more.',
+    href: '/visa',
+  },
+  {
+    icon: 'globe',
+    title: 'Tour Packages',
+    desc: 'Memorable Azerbaijan tour packages — Baku, Gabala and the Caspian coast.',
+    href: '/tours',
+  },
+  {
+    icon: 'hotel',
+    title: 'Hotel Booking',
+    desc: 'Reserve hotels worldwide, including premium stays in Makkah and Madinah.',
+    href: '/services#hotels',
+  },
+  {
+    icon: 'shield',
+    title: 'Travel Insurance',
+    desc: 'Affordable travel insurance covering medical emergencies, delays and lost baggage.',
+    href: '/services#insurance',
+  },
+];
+
 export interface TeamMember {
   name: string;
   initials: string;
@@ -21,15 +60,6 @@ export interface TeamMember {
 }
 
 export const team: TeamMember[] = [
-  {
-    name: 'Muhammad Adnan',
-    initials: 'MA',
-    role: 'Visa Department',
-    photo: '/adnan.jpeg',
-    phoneDisplay: '0312 7092424',
-    phoneIntl: '+923127092424',
-    whatsapp: '923127092424',
-  },
   {
     name: 'Muhammad Zeeshan',
     initials: 'MZ',
@@ -50,42 +80,43 @@ export const team: TeamMember[] = [
   },
 ];
 
-export const services: Service[] = [
+export interface Leader {
+  name: string;
+  role: string;
+  photo: string;
+  bio: string[];
+  facts: { icon: string; text: string }[];
+  email?: string;
+}
+
+export const leadership: Leader[] = [
   {
-    icon: 'kaaba',
-    title: 'Umrah Packages',
-    desc: 'Economy to VIP Umrah packages with visa, flights, hotels near Haram and guided ziyarat.',
-    href: '/umrah',
+    name: 'Muhammad Owais',
+    role: 'Managing Director',
+    photo: '/owais.jpeg',
+    bio: [
+      'Muhammad Owais leads Pakzameen Travels and Tours as Managing Director. A passionate traveller who has explored 10+ countries, he is dedicated to making every journey — from Umrah to international tours — simple, affordable and reliable.',
+    ],
+    facts: [
+      { icon: 'star', text: 'Managing Director & travel specialist' },
+      { icon: 'plane', text: 'Passionate traveller — visited 10+ countries' },
+      { icon: 'pin', text: 'Based in Sargodha, Pakistan' },
+    ],
+    email: 'owais@pakzameentravels.com',
   },
   {
-    icon: 'mosque',
-    title: 'Hajj Packages',
-    desc: 'Government-approved Hajj packages with complete guidance from application to return.',
-    href: '/hajj',
-  },
-  {
-    icon: 'plane',
-    title: 'Air Ticketing',
-    desc: 'Best fares on all major airlines for domestic and international destinations.',
-    href: '/services#ticketing',
-  },
-  {
-    icon: 'passport',
-    title: 'Visa Services',
-    desc: 'Visit, tourist and work visa processing for the GCC, Europe, UK, Turkey and more.',
-    href: '/services#visa',
-  },
-  {
-    icon: 'globe',
-    title: 'Tour Packages',
-    desc: 'Northern Pakistan tours and international holidays — Turkey, Dubai, Malaysia, Azerbaijan.',
-    href: '/tours',
-  },
-  {
-    icon: 'hotel',
-    title: 'Hotel Booking',
-    desc: 'Reserve hotels worldwide, including premium stays in Makkah and Madinah.',
-    href: '/services#hotels',
+    name: 'Muhammad Adnan',
+    role: 'Chief Executive Officer',
+    photo: '/adnan.jpeg',
+    bio: [
+      'Muhammad Adnan is the Chief Executive Officer of Pakzameen Travels and Tours. He drives the company’s vision and day-to-day operations, bringing years of hands-on experience across visa processing, ticketing and international travel.',
+      'A specialist in visa and documentation, Adnan has guided countless clients through smooth applications for destinations across the GCC, Europe and Asia. He is known for his attention to detail, honest advice and a commitment to getting every traveller to their destination with confidence.',
+    ],
+    facts: [
+      { icon: 'star', text: 'Chief Executive Officer' },
+      { icon: 'passport', text: 'Visa & documentation specialist' },
+      { icon: 'pin', text: 'Based in Sargodha, Pakistan' },
+    ],
   },
 ];
 
@@ -143,88 +174,56 @@ export const umrahPackages: Package[] = [
   },
 ];
 
-export const hajjPackages: Package[] = [
-  {
-    name: 'Economy Hajj',
-    duration: '35 – 40 Days',
-    price: 'On Request',
-    note: 'per person',
-    features: [
-      'Government-approved scheme guidance',
-      'Return air ticket',
-      'Sharing accommodation in Makkah & Madinah',
-      'Aziziah / camp arrangements in Mina & Arafat',
-      'Trained Hajj group leader',
-    ],
-  },
-  {
-    name: 'Deluxe Hajj',
-    duration: '25 – 30 Days',
-    price: 'On Request',
-    note: 'per person',
-    featured: true,
-    features: [
-      'Shorter, comfortable duration',
-      'Return air ticket',
-      'Hotels close to Haram',
-      'Upgraded Mina tents (VIP camp)',
-      'Full-board meals throughout',
-      'Complete manasik training',
-    ],
-  },
-];
-
 export interface TourPackage {
   destination: string;
-  region: 'Domestic' | 'International';
   duration: string;
   priceFrom: string;
   blurb: string;
 }
 
+// Pakzameen tour packages — Azerbaijan only.
 export const tours: TourPackage[] = [
   {
-    destination: 'Hunza & Skardu',
-    region: 'Domestic',
-    duration: '7 Days / 6 Nights',
-    priceFrom: 'PKR 65,000',
-    blurb: 'Attabad Lake, Khunjerab Pass, Deosai Plains and the mighty Karakoram.',
-  },
-  {
-    destination: 'Naran & Kaghan',
-    region: 'Domestic',
-    duration: '4 Days / 3 Nights',
-    priceFrom: 'PKR 32,000',
-    blurb: 'Saif-ul-Malook Lake, Babusar Top and the green Kaghan valley.',
-  },
-  {
-    destination: 'Swat & Kalam',
-    region: 'Domestic',
+    destination: 'Baku Explorer',
     duration: '5 Days / 4 Nights',
-    priceFrom: 'PKR 38,000',
-    blurb: 'The Switzerland of the East — rivers, waterfalls and alpine meadows.',
-  },
-  {
-    destination: 'Dubai & Abu Dhabi',
-    region: 'International',
-    duration: '5 Days / 4 Nights',
-    priceFrom: 'PKR 185,000',
-    blurb: 'City tours, desert safari, Burj Khalifa and theme-park add-ons.',
-  },
-  {
-    destination: 'Turkey Highlights',
-    region: 'International',
-    duration: '8 Days / 7 Nights',
-    priceFrom: 'PKR 320,000',
-    blurb: 'Istanbul, Bursa, Cappadocia and Pamukkale with guided sightseeing.',
-  },
-  {
-    destination: 'Baku, Azerbaijan',
-    region: 'International',
-    duration: '6 Days / 5 Nights',
     priceFrom: 'PKR 235,000',
-    blurb: 'Old City, Gabala mountains and the Caspian coast.',
+    blurb: 'Old City, Flame Towers, Heydar Aliyev Center and a walk along the Caspian sea-front.',
   },
+  {
+    destination: 'Baku & Gabala',
+    duration: '7 Days / 6 Nights',
+    priceFrom: 'PKR 310,000',
+    blurb: 'Baku highlights plus the Gabala mountains, cable car, waterfalls and alpine scenery.',
+  },
+  {
+    destination: 'Azerbaijan Deluxe',
+    duration: '8 Days / 7 Nights',
+    priceFrom: 'PKR 420,000',
+    blurb: 'Baku, Gabala and Shahdag with premium hotels, private transfers and guided sightseeing.',
+  },
+];
+
+export interface VisaCountry {
+  country: string;
+  flag: string;
+  type: string;
+}
+
+export const visaCountries: VisaCountry[] = [
+  { country: 'UAE — Dubai & Abu Dhabi', flag: '🇦🇪', type: 'Visit / Tourist Visa' },
+  { country: 'Saudi Arabia', flag: '🇸🇦', type: 'Umrah / Visit Visa' },
+  { country: 'Qatar', flag: '🇶🇦', type: 'Tourist Visa' },
+  { country: 'Bahrain', flag: '🇧🇭', type: 'Visit / Tourist Visa' },
+  { country: 'Oman', flag: '🇴🇲', type: 'Tourist Visa' },
+  { country: 'Thailand', flag: '🇹🇭', type: 'Tourist Visa' },
+  { country: 'Malaysia', flag: '🇲🇾', type: 'Tourist Visa' },
+  { country: 'Singapore', flag: '🇸🇬', type: 'Tourist Visa' },
+  { country: 'Schengen (Europe)', flag: '🇪🇺', type: 'Tourist / Visit Visa' },
+  { country: 'Turkey', flag: '🇹🇷', type: 'Tourist / e-Visa' },
+  { country: 'Azerbaijan', flag: '🇦🇿', type: 'Tourist / e-Visa' },
+  { country: 'United Kingdom', flag: '🇬🇧', type: 'Visit Visa' },
+  { country: 'China', flag: '🇨🇳', type: 'Tourist / Business Visa' },
+  { country: 'Indonesia', flag: '🇮🇩', type: 'Tourist Visa' },
 ];
 
 export interface Feature {
@@ -273,7 +272,7 @@ export const testimonials: Testimonial[] = [
     name: 'Ayesha Khan',
     location: 'Faisalabad',
     quote:
-      'Booked our Hunza tour with Pakzameen. Everything from transport to hotels was smooth. Highly recommended!',
+      'Booked our Azerbaijan tour with Pakzameen. Everything from visa to hotels and transport was smooth. Highly recommended!',
   },
   {
     name: 'Bilal Ahmed',

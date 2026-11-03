@@ -6,9 +6,7 @@ import Figure from '../components/Figure.astro';
 import PackageCard from '../components/PackageCard.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { services, whyUs, umrahPackages, testimonials } from '../data/content';
-import { img, tourImage } from '../data/images';
-
-const popular = ['Hunza & Skardu', 'Dubai & Abu Dhabi', 'Turkey Highlights', 'Naran & Kaghan'];
+import { img } from '../data/images';
 ---
 
 <BaseLayout>
@@ -35,24 +33,17 @@ const popular = ['Hunza & Skardu', 'Dubai & Abu Dhabi', 'Turkey Highlights', 'Na
     </div>
   </section>
 
-  <!-- Popular destinations -->
+  <!-- Featured destination: Azerbaijan -->
   <section class="section section--alt">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Popular right now</span>
-        <h2>Destinations our travellers love</h2>
-        <p>Hand-picked tours across the north of Pakistan and beyond, at prices that make sense.</p>
-      </div>
-      <div class="grid cols-4 dest-grid">
-        {popular.map((d) => (
-          <a href="/tours" class="dest">
-            <Figure src={tourImage[d]} alt={d} ratio="3 / 4" />
-            <span class="dest-name">{d}</span>
-          </a>
-        ))}
-      </div>
-      <div class="center-btn">
-        <a href="/tours" class="btn btn--ghost">See all tour packages <Icon name="arrow" size={16} /></a>
+      <div class="azb">
+        <Figure src={img.baku} alt="Baku, Azerbaijan" ratio="4 / 3" class="azb-img" />
+        <div class="azb-body">
+          <span class="eyebrow">Featured destination</span>
+          <h2>Discover Azerbaijan</h2>
+          <p>Explore the magic of Baku — the Old City, Flame Towers and the Caspian sea-front — plus the mountains and waterfalls of Gabala. Our Azerbaijan tour packages include visa guidance, flights, hotels and guided sightseeing.</p>
+          <a href="/tours" class="btn">View Azerbaijan tours <Icon name="arrow" size={16} /></a>
+        </div>
       </div>
     </div>
   </section>
@@ -172,6 +163,12 @@ const popular = ['Hunza & Skardu', 'Dubai & Abu Dhabi', 'Turkey Highlights', 'Na
     background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 55%);
     z-index: 1;
   }
+
+  /* Featured destination (Azerbaijan) */
+  .azb { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 880px) { .azb { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+  .azb-body .eyebrow { margin-bottom: 0.7rem; }
+  .azb-body p { color: var(--muted); margin-bottom: 1.5rem; }
 
   .center-btn { text-align: center; margin-top: 2.2rem; }
 
