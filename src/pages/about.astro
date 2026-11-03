@@ -66,10 +66,19 @@ const values = [
                   <li><Icon name={f.icon} size={16} /> {f.text}</li>
                 ))}
               </ul>
-              {p.email && (
-                <a href={`mailto:${p.email}`} class="owner-email">
-                  <Icon name="mail" size={16} /> {p.email}
-                </a>
+              {(p.email || p.phoneDisplay) && (
+                <div class="owner-contact">
+                  {p.phoneDisplay && (
+                    <a href={`tel:${p.phoneIntl}`} class="owner-contact-link">
+                      <Icon name="phone" size={16} /> {p.phoneDisplay}
+                    </a>
+                  )}
+                  {p.email && (
+                    <a href={`mailto:${p.email}`} class="owner-contact-link">
+                      <Icon name="mail" size={16} /> {p.email}
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           </div>
@@ -238,17 +247,22 @@ const values = [
     color: var(--text);
   }
   .owner-facts svg { color: var(--orange); flex-shrink: 0; }
-  .owner-email {
+  .owner-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    margin-top: 1.2rem;
+  }
+  .owner-contact-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1.2rem;
     font-family: var(--font-head);
     font-weight: 600;
     font-size: 0.95rem;
     color: var(--orange-dark);
   }
-  .owner-email:hover { color: var(--orange); }
+  .owner-contact-link:hover { color: var(--orange); }
 
   /* Team */
   .team-grid {

@@ -87,23 +87,12 @@ export interface Leader {
   bio: string[];
   facts: { icon: string; text: string }[];
   email?: string;
+  phoneDisplay?: string;
+  phoneIntl?: string;
+  whatsapp?: string;
 }
 
 export const leadership: Leader[] = [
-  {
-    name: 'Muhammad Owais',
-    role: 'Managing Director',
-    photo: '/owais.jpeg',
-    bio: [
-      'Muhammad Owais leads Pakzameen Travels and Tours as Managing Director. A passionate traveller who has explored 10+ countries, he is dedicated to making every journey — from Umrah to international tours — simple, affordable and reliable.',
-    ],
-    facts: [
-      { icon: 'star', text: 'Managing Director & travel specialist' },
-      { icon: 'plane', text: 'Passionate traveller — visited 10+ countries' },
-      { icon: 'pin', text: 'Based in Sargodha, Pakistan' },
-    ],
-    email: 'owais@pakzameentravels.com',
-  },
   {
     name: 'Muhammad Adnan',
     role: 'Chief Executive Officer',
@@ -117,6 +106,24 @@ export const leadership: Leader[] = [
       { icon: 'passport', text: 'Visa & documentation specialist' },
       { icon: 'pin', text: 'Based in Sargodha, Pakistan' },
     ],
+    email: 'adnan@pakzameentravels.com',
+    phoneDisplay: '0312 7092424',
+    phoneIntl: '+923127092424',
+    whatsapp: '923127092424',
+  },
+  {
+    name: 'Muhammad Owais',
+    role: 'Managing Director',
+    photo: '/owais.jpeg',
+    bio: [
+      'Muhammad Owais leads Pakzameen Travels and Tours as Managing Director. A passionate traveller who has explored 10+ countries, he is dedicated to making every journey — from Umrah to international tours — simple, affordable and reliable.',
+    ],
+    facts: [
+      { icon: 'star', text: 'Managing Director & travel specialist' },
+      { icon: 'plane', text: 'Passionate traveller — visited 10+ countries' },
+      { icon: 'pin', text: 'Based in Sargodha, Pakistan' },
+    ],
+    email: 'owais@pakzameentravels.com',
   },
 ];
 
