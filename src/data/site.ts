@@ -20,7 +20,7 @@ export const site = {
   email: 'info@pakzameen.com', // PLACEHOLDER — replace with real email
 
   address: {
-    line1: 'Mian Khan Road, Block 15',
+    line1: 'Mian Khan Road, Block 16',
     line2: 'Near Dr. Younas Clinic, Sargodha',
     city: 'Sargodha',
     region: 'Punjab',
@@ -49,5 +49,5 @@ export const links = {
   mailto: `mailto:${site.email}`,
   mapsQuery:
     'https://www.google.com/maps/search/?api=1&query=' +
-    encodeURIComponent('Pakzameen Travels and Tours, Mian Khan Road, Block 15, Sargodha, Pakistan'),
+    encodeURIComponent('Pakzameen Travels and Tours, Mian Khan Road, Block 16, Sargodha, Pakistan'),
 };

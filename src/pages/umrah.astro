@@ -22,11 +22,22 @@ const steps = [
   { n: '3', t: 'Submit documents', d: 'Passport, photos and CNIC — we handle the visa.' },
   { n: '4', t: 'Travel with peace', d: 'Fly out with everything arranged, start to finish.' },
 ];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Umrah Packages"
-  description="Economy to VIP Umrah packages from Pakzameen Travels and Tours — visa, flights, hotels near the Haram and guided ziyarat."
+  description="Economy to VIP Umrah packages from Pakzameen Travels and Tours — visa, flights, hotels near the Haram and guided ziyarat. Affordable Umrah from Sargodha, Pakistan."
+  schema={[faqSchema]}
 >
   <PageHero
     crumb="Umrah"

@@ -13,21 +13,27 @@ export interface Service {
 export const services: Service[] = [
   {
     icon: 'kaaba',
-    title: 'Umrah Packages',
+    title: 'Umrah Services',
     desc: 'Economy to VIP Umrah packages with visa, flights, hotels near Haram and guided ziyarat.',
     href: '/umrah',
   },
   {
     icon: 'plane',
-    title: 'Air Ticketing',
+    title: 'Airline Tickets',
     desc: 'Best fares on all major airlines for international destinations worldwide.',
     href: '/services#ticketing',
   },
   {
     icon: 'passport',
-    title: 'Visa Services',
-    desc: 'Visit and tourist visa processing for the UAE, Schengen, Thailand, Malaysia, Bahrain and many more.',
+    title: 'Visit Visa',
+    desc: 'Visit and tourist visa processing for the UAE, Schengen, Thailand, Malaysia, Bahrain and more.',
     href: '/visa',
+  },
+  {
+    icon: 'graduation',
+    title: 'Study Visa',
+    desc: 'Student visa guidance and processing — admissions support, documents and applications.',
+    href: '/services#specialist',
   },
   {
     icon: 'globe',
@@ -46,6 +52,64 @@ export const services: Service[] = [
     title: 'Travel Insurance',
     desc: 'Affordable travel insurance covering medical emergencies, delays and lost baggage.',
     href: '/services#insurance',
+  },
+  {
+    icon: 'shieldcheck',
+    title: 'E-Protector',
+    desc: 'Fast E-Protector registration and processing for overseas Pakistani workers.',
+    href: '/services#specialist',
+  },
+  {
+    icon: 'medical',
+    title: 'GAMCA Medical Token',
+    desc: 'Quick, correct GAMCA (Gulf) medical slip and token booking for Gulf-bound employment.',
+    href: '/services#specialist',
+  },
+  {
+    icon: 'doc',
+    title: 'Wakala Services',
+    desc: 'Wakala (power of attorney) and agency services prepared and processed on your behalf.',
+    href: '/services#specialist',
+  },
+  {
+    icon: 'stamp',
+    title: 'Documents Attestation',
+    desc: 'Attestation of educational, personal and commercial documents for home and abroad.',
+    href: '/services#specialist',
+  },
+];
+
+// Specialist & document services shown in a dedicated grid on the Services page.
+export const specialistServices: Service[] = [
+  {
+    icon: 'graduation',
+    title: 'Study Visa',
+    desc: 'End-to-end student visa support — choosing a country, admission guidance, documentation and a complete, correct application.',
+    href: '#specialist',
+  },
+  {
+    icon: 'shieldcheck',
+    title: 'E-Protector',
+    desc: 'Hassle-free E-Protector (Protector of Emigrants) registration and processing for overseas Pakistani workers.',
+    href: '#specialist',
+  },
+  {
+    icon: 'medical',
+    title: 'GAMCA Medical Token',
+    desc: 'We book your GAMCA / Gulf medical appointment slip and token quickly and correctly for Gulf-bound employment.',
+    href: '#specialist',
+  },
+  {
+    icon: 'doc',
+    title: 'Wakala Services',
+    desc: 'Preparation and processing of Wakala (power of attorney) and agency documents on your behalf.',
+    href: '#specialist',
+  },
+  {
+    icon: 'stamp',
+    title: 'Documents Attestation',
+    desc: 'Attestation of educational, personal and commercial documents for use within Pakistan and abroad.',
+    href: '#specialist',
   },
 ];
 

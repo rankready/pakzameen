@@ -4,29 +4,44 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
 import { site, links } from '../data/site';
+import { services } from '../data/content';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  keywords?: string;
+  schema?: Record<string, unknown>[]; // extra JSON-LD objects for this page
 }
 
 const {
   title,
-  description = 'Pakzameen Travels and Tours — trusted Umrah, air ticketing, visa, travel insurance and Azerbaijan tour packages from Sargodha, Pakistan.',
+  description = 'Pakzameen Travels and Tours — trusted Umrah packages, air tickets, visit & study visa, travel insurance, GAMCA medical, E-Protector, document attestation and Azerbaijan tours from Sargodha, Pakistan.',
   image = '/og-image.png',
+  keywords = 'Pakzameen Travels and Tours, travel agency Sargodha, Umrah packages Pakistan, visit visa, study visa, air tickets, Azerbaijan tour packages, travel insurance, GAMCA medical token, E-Protector, Wakala services, documents attestation, hotel booking, Sargodha travel agent',
+  schema = [],
 } = Astro.props;
 
-const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — Umrah, Visa & Tours`;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — Umrah, Visa, Tickets & Tours in Sargodha`;
+const base = Astro.site ?? Astro.url;
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImage = new URL(image, base).href;
+const socials = Object.values(site.socials).filter(Boolean);
 
-const jsonLd = {
+const organizationLd = {
   '@context': 'https://schema.org',
   '@type': 'TravelAgency',
+  '@id': new URL('#organization', base).href,
   name: site.name,
+  legalName: `${site.name} (Regd.)`,
   description,
+  url: base.href,
+  logo: new URL('/logo.png', base).href,
+  image: ogImage,
   telephone: site.phoneIntl,
-  url: Astro.site?.href,
+  email: site.email,
+  priceRange: '$$',
+  currenciesAccepted: 'PKR',
   address: {
     '@type': 'PostalAddress',
     streetAddress: `${site.address.line1}, ${site.address.line2}`,
@@ -35,8 +50,28 @@ const jsonLd = {
     postalCode: site.address.postal,
     addressCountry: 'PK',
   },
-  areaServed: site.serviceArea,
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 32.0836,
+    longitude: 72.6711,
+  },
+  areaServed: ['Sargodha', 'Punjab', 'Pakistan'],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '20:00',
+    },
+  ],
+  ...(socials.length ? { sameAs: socials } : {}),
+  makesOffer: services.map((s) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: s.title, description: s.desc },
+  })),
 };
+
+const allSchema = [organizationLd, ...schema];
 ---
 
 <!doctype html>
@@ -47,19 +82,37 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={site.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Local SEO -->
+    <meta name="geo.region" content="PK-PB" />
+    <meta name="geo.placename" content="Sargodha" />
+    <meta name="geo.position" content="32.0836;72.6711" />
+    <meta name="ICBM" content="32.0836, 72.6711" />
 
     <!-- Open Graph / social -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site ?? Astro.url).href} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <meta name="theme-color" content="#e87722" />
-    <set:html html={`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`} />
+    {allSchema.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
   <body>
     <a href="#main" class="sr-only">Skip to content</a>
